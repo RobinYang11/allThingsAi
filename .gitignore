@@ -7,3 +7,5 @@
 aienv/lib/
 
 elasticsearch/data/
+
+/node_modules/
