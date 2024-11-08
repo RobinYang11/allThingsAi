@@ -27,7 +27,7 @@ def generate_user_data(num_users):
         user_data.append(user)  # 将用户添加到用户数据列表中
     return user_data  # 返回生成的用户数据
 
-# 生成1000个用户
+# 生成1000个用户           
 users = generate_user_data(1000)
 
 # 将用户数据保存到JSON文件

@@ -1,2 +1,9 @@
 
 /cnn/cifar10/
+
+.vscode/
+.idea/
+
+aienv/lib/
+
+elasticsearch/data/

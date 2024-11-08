@@ -84,7 +84,7 @@ def bulk_import_to_elasticsearch(json_file_path, es_index_name, startLine, endLi
 
 # Call the function with the path to your JSON file
 
-bulk_import_to_elasticsearch('./data/search.test.json','search-index', 40000, 50000)
+bulk_import_to_elasticsearch('./data/search.test.json','search-index', 0, 60000)
 
 
 
