@@ -11,7 +11,6 @@ import numpy as np
 
 import subprocess
 
-<<<<<<< HEAD:langchain_demo/deepseek.py
 def open_finder():
     """Open the Finder in MacOS"""
     subprocess.call(["open", "-a", "Finder"])
@@ -21,8 +20,6 @@ def open_wps():
     subprocess.call(["open", "-a", "/Applications/wpsoffice.app"])
 
 
-=======
->>>>>>> c32a1fe2459dea9918cbb67eaedaf15cc14feda2:langchain_demo/8.tool_agent.py
 def get_current_weather(location: str, unit: Optional[str] = "celsius") -> str:
     """Get the current weather in a given location"""
     if location.lower() == "beijing":
