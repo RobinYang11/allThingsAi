@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/wepay/Desktop/learn/allThingsAi/aienv"
+set -gx VIRTUAL_ENV "/Users/robinyang/Desktop/workdir/allThingsAi/aienv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

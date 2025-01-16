@@ -9,7 +9,15 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
+import subprocess
 
+def open_finder():
+    """Open the Finder in MacOS"""
+    subprocess.call(["open", "-a", "Finder"])
+
+def open_wps():
+    """Open the Finder in MacOS"""
+    subprocess.call(["open", "-a", "/Applications/wpsoffice.app"])
 
 
 def get_current_weather(location: str, unit: Optional[str] = "celsius") -> str:
@@ -48,6 +56,19 @@ fuck_tool = StructuredTool.from_function(
     description="问候某人"
 )
 
+open_app_tool = StructuredTool.from_function(
+  func=open_finder,
+  name="open_finder",
+  description="open finder application"
+)
+open_wps_tool = StructuredTool.from_function(
+  func=open_wps,
+  name="open_wps",
+  description="open wps "
+)
+
+
+
 circle_tool = StructuredTool.from_function(
     func=draw_circle,
     name="draw_circle",
@@ -57,7 +78,6 @@ circle_tool = StructuredTool.from_function(
 api_key = os.getenv("DeepSeekApiKey")
 if not api_key:
     raise ValueError("DeepSeekApiKey environment variable is not set")
-
 
 chat_model = ChatOpenAI(
     api_key=SecretStr(api_key),
@@ -85,11 +105,12 @@ fuck_prompt = ChatPromptTemplate.from_messages([
 
 
 
-agent = create_openai_tools_agent(chat_model, [weather_tool,fuck_tool, circle_tool],prompt)
-agent_executor = AgentExecutor(agent=agent, tools=[weather_tool,fuck_tool, circle_tool], max_iterations=3,verbose=True)  # Added max_iterations
+agent = create_openai_tools_agent(chat_model, [weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool],prompt)
+agent_executor = AgentExecutor(agent=agent, tools=[weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool], max_iterations=3,verbose=True)  # Added max_iterations
 
 response = agent_executor.invoke(
-    {"input": "问候李雷,北京天气这么样? 再帮我画一个圆"}
+    # {"input": "问候李雷,北京天气这么样? 再帮我画一个圆"}
+    {"input": "打开访达 ,再打开wps"}
 )
 
 print("\nTool calling response:")
