@@ -10,8 +10,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-
-
 def get_current_weather(location: str, unit: Optional[str] = "celsius") -> str:
     """Get the current weather in a given location"""
     if location.lower() == "beijing":
