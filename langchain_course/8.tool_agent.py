@@ -5,7 +5,6 @@ from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from pydantic import SecretStr
 from langchain.tools import StructuredTool
 from typing import Optional
-import math
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -20,6 +19,9 @@ def open_wps():
     subprocess.call(["open", "-a", "/Applications/wpsoffice.app"])
 
 
+def send_email(name):
+  return f"发送邮件给{name}"
+
 def get_current_weather(location: str, unit: Optional[str] = "celsius") -> str:
     """Get the current weather in a given location"""
     if location.lower() == "beijing":
@@ -27,8 +29,8 @@ def get_current_weather(location: str, unit: Optional[str] = "celsius") -> str:
     return f"The weather in {location} is 22 degrees {unit}"
 
 def get_fuck(name: str) -> str:
-    print(f"fuck {name}")
-    return f"fuck {name}"
+    print(f"hello {name}")
+    return f"hello {name}"
 
 def draw_circle(radius: float = 10.0) -> str:
     """Draw a circle with the given radius"""
@@ -56,6 +58,12 @@ fuck_tool = StructuredTool.from_function(
     description="问候某人"
 )
 
+send_email_tool = StructuredTool.from_function(
+  func=send_email,
+  name="sendEmail",
+  description="发送邮件给某人"
+)
+
 open_app_tool = StructuredTool.from_function(
   func=open_finder,
   name="open_finder",
@@ -66,7 +74,6 @@ open_wps_tool = StructuredTool.from_function(
   name="open_wps",
   description="open wps "
 )
-
 
 
 circle_tool = StructuredTool.from_function(
@@ -105,12 +112,12 @@ fuck_prompt = ChatPromptTemplate.from_messages([
 
 
 
-agent = create_openai_tools_agent(chat_model, [weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool],prompt)
-agent_executor = AgentExecutor(agent=agent, tools=[weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool], max_iterations=3,verbose=True)  # Added max_iterations
+
+agent = create_openai_tools_agent(chat_model, [weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool,send_email_tool],prompt)
+agent_executor = AgentExecutor(agent=agent, tools=[weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool,send_email_tool], max_iterations=3,verbose=True)  # Added max_iterations
 
 response = agent_executor.invoke(
-    # {"input": "问候李雷,北京天气这么样? 再帮我画一个圆"}
-    {"input": "打开访达 ,再打开wps"}
+    {"input": "帮我发送邮件给单跃鹏 "}
 )
 
 print("\nTool calling response:")

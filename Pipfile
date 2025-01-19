@@ -7,6 +7,8 @@ name = "pypi"
 langchain-openai = "*"
 langchain = "*"
 langchain-community = "*"
+chromadb = "*"
+matplotlib = "*"
 
 [dev-packages]
 
