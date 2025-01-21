@@ -9,3 +9,6 @@ aienv/lib/
 elasticsearch/data/
 
 /node_modules/
+
+
+/langchain_course/rag/db/
