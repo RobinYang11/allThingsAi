@@ -15,10 +15,11 @@ from langchain_community.embeddings import OllamaEmbeddings
 
 embeddings = OllamaEmbeddings(
     base_url="http://127.0.0.1:11434",
-    model="llama3",
+    # model="llama3",
+    model="deepseek-r1:7b"
 )
 
-model =OllamaLLM(base_url="http://127.0.0.1:11434",model="llama3")
+model =OllamaLLM(base_url="http://127.0.0.1:11434",model="deepseek-r1:7b")
 
 load_dotenv()
 

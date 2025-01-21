@@ -10,10 +10,19 @@ from dotenv import load_dotenv
 from langchain_community.embeddings import OllamaEmbeddings
 
 load_dotenv()
+# embeddings = OllamaEmbeddings(
+#     base_url="http://127.0.0.1:11434",
+#     model="llama3",
+# )
+
 embeddings = OllamaEmbeddings(
     base_url="http://127.0.0.1:11434",
-    model="llama3",
+    # model="llama3",
+    model="deepseek-r1:7b"
 )
+
+# model =OllamaLLM(base_url="http://127.0.0.1:11434",model="deepseek-r1:7b")
+
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 persistent_directory = os.path.join(current_dir, "db", "chroma_db")
