@@ -12,3 +12,4 @@ elasticsearch/data/
 
 
 /langchain_course/rag/db/
+.env
