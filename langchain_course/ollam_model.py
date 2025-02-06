@@ -8,7 +8,7 @@ prompt_template = ChatPromptTemplate.from_template(template)
 
 embeddings = OllamaEmbeddings()
 
-llm =OllamaLLM(base_url="127.0.0.1:11434",model="llama3")
+llm =OllamaLLM(base_url="127.0.0.1:11434",model="deepseek-r1:7b")
 
 
 

@@ -3,11 +3,11 @@ import os
 from langchain.text_splitter import CharacterTextSplitter
 from pydantic import SecretStr
 from langchain_community.document_loaders import TextLoader
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain.embeddings.base import Embeddings
 import os
 from dotenv import load_dotenv
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 load_dotenv()
 # embeddings = OllamaEmbeddings(
@@ -36,8 +36,9 @@ retriever = db.as_retriever(
 )
 
 retriever_docs = retriever.invoke(query)
+print(retriever_docs)
 
-for i, doc in enumerate(retriever_docs):
-    print(doc)
+# for i, doc in enumerate(retriever_docs):
+#     print(doc)
     # if doc.metadata:
         # print(doc.metadata.get("source", "Unknown"))

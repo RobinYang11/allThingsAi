@@ -6,7 +6,7 @@ import os
 from langchain.text_splitter import CharacterTextSplitter
 from pydantic import SecretStr
 from langchain_community.document_loaders import TextLoader
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain.embeddings.base import Embeddings
 import os
 from dotenv import load_dotenv
@@ -15,8 +15,8 @@ from langchain_community.embeddings import OllamaEmbeddings
 
 embeddings = OllamaEmbeddings(
     base_url="http://127.0.0.1:11434",
-    # model="llama3",
-    model="deepseek-r1:7b"
+    model="deepseek-r1:7b",
+    # model="deepseek-r1:7b"
 )
 
 model =OllamaLLM(base_url="http://127.0.0.1:11434",model="deepseek-r1:7b")

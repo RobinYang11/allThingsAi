@@ -112,12 +112,11 @@ fuck_prompt = ChatPromptTemplate.from_messages([
 
 
 
-
 agent = create_openai_tools_agent(chat_model, [weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool,send_email_tool],prompt)
 agent_executor = AgentExecutor(agent=agent, tools=[weather_tool,fuck_tool, circle_tool,open_app_tool,open_wps_tool,send_email_tool], max_iterations=3,verbose=True)  # Added max_iterations
 
 response = agent_executor.invoke(
-    {"input": "帮我发送邮件给单跃鹏 "}
+    {"input": "帮我发送邮件某人"}
 )
 
 print("\nTool calling response:")

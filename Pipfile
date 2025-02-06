@@ -9,7 +9,9 @@ langchain = "*"
 langchain-community = "*"
 chromadb = "*"
 matplotlib = "*"
+langchain-chroma = "*"
 langchain-ollama = "*"
+torch = "*"
 
 [dev-packages]
 

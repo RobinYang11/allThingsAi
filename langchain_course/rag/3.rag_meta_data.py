@@ -7,6 +7,7 @@ from langchain_ollama.embeddings import OllamaEmbeddings
 
 embeddings = OllamaEmbeddings(
     model="deepseek-r1:7b",
+    # model="llama3",
     base_url="http://localhost:11434",
 )
 
@@ -16,8 +17,7 @@ db_dir = os.path.join(current_dir, "db")
 persistent_directory = os.path.join(db_dir, "chroma_db_with_metadata")
 
 if not os.path.exists(persistent_directory):
-    print("Persistent directory does not exist")
-
+    print("Chunking books directory ...")
     if not os.path.exists(books_dir):
         raise FileNotFoundError(
             f"The directory {books_dir} does not exist. Please check the path"
@@ -36,9 +36,9 @@ if not os.path.exists(persistent_directory):
 
     text_splitter = CharacterTextSplitter(
         chunk_size=1000,
-        chunk_overlap=20,
-        separator="\n\n",
-        # separators=[" ", ",", "\n"],
+        chunk_overlap=100,
+        separator="。",
+        length_function=len,
     )
     docs = text_splitter.split_documents(documents)
     db = Chroma.from_documents(docs, embeddings, persist_directory=persistent_directory)
