@@ -12,6 +12,7 @@ matplotlib = "*"
 langchain-chroma = "*"
 langchain-ollama = "*"
 torch = "*"
+langchain-deepseek = "*"
 
 [dev-packages]
 

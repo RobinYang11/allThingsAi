@@ -4,7 +4,7 @@
 import os
 
 from langchain.text_splitter import CharacterTextSplitter
-from pydantic import SecretStr
+from langchain_openai import OpenAIEmbeddings
 from langchain_community.document_loaders import TextLoader
 from langchain_chroma import Chroma
 from langchain.embeddings.base import Embeddings
@@ -12,16 +12,18 @@ import os
 from dotenv import load_dotenv
 from langchain_ollama.llms import OllamaLLM
 from langchain_community.embeddings import OllamaEmbeddings
+from langchain_deepseek import ChatDeepSeek
+
 
 embeddings = OllamaEmbeddings(
     base_url="http://127.0.0.1:11434",
-    model="deepseek-r1:7b",
-    # model="deepseek-r1:7b"
+    model="bge-m3",
 )
 
-model =OllamaLLM(base_url="http://127.0.0.1:11434",model="deepseek-r1:7b")
-
 load_dotenv()
+api_key = os.getenv("DeepSeekR1Key")
+if not api_key:
+    raise ValueError("DeepSeekApiKey environment variable is not set")
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir, "books", "pfdsj.txt")

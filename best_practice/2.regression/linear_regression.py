@@ -57,7 +57,7 @@ criterion = nn.MSELoss()  # 均方误差
 optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 # 训练模型
-epochs = 1000
+epochs = 10000
 for epoch in range(epochs):
     optimizer.zero_grad()
     predictions = model(X)

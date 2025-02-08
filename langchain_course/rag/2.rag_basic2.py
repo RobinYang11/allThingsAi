@@ -10,35 +10,25 @@ from dotenv import load_dotenv
 from langchain_ollama import OllamaEmbeddings
 
 load_dotenv()
-# embeddings = OllamaEmbeddings(
-#     base_url="http://127.0.0.1:11434",
-#     model="llama3",
-# )
 
 embeddings = OllamaEmbeddings(
     base_url="http://127.0.0.1:11434",
-    # model="llama3",
-    model="deepseek-r1:7b"
+    model="bge-m3"
 )
-
-# model =OllamaLLM(base_url="http://127.0.0.1:11434",model="deepseek-r1:7b")
-
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 persistent_directory = os.path.join(current_dir, "db", "chroma_db")
 db = Chroma(persist_directory=persistent_directory, embedding_function=embeddings)
 
-query = "孙少平是哪里人?"
+query = "孙少平住在哪里?"
 
 retriever = db.as_retriever(
     search_type="similarity_score_threshold",
-    search_kwargs={"k": 3, "score_threshold": 0.2},
+    search_kwargs={"k": 3, "score_threshold": 0.3},
 )
 
 retriever_docs = retriever.invoke(query)
-print(retriever_docs)
 
 # for i, doc in enumerate(retriever_docs):
-#     print(doc)
-    # if doc.metadata:
-        # print(doc.metadata.get("source", "Unknown"))
+    # print("docs")
+    # print(doc)

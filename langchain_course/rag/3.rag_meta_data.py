@@ -5,10 +5,11 @@ from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_ollama.embeddings import OllamaEmbeddings
 
+
+
 embeddings = OllamaEmbeddings(
-    model="deepseek-r1:7b",
-    # model="llama3",
-    base_url="http://localhost:11434",
+    base_url="http://127.0.0.1:11434",
+    model="bge-m3"
 )
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,6 +32,8 @@ if not os.path.exists(persistent_directory):
         loader = TextLoader(file_path, encoding="utf-8")
         book_docs = loader.load()
         for doc in book_docs:
+            print(doc)
+            print("================================================")
             doc.metadata = {"source": book_file}
             documents.append(doc)
 
