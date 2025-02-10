@@ -61,16 +61,16 @@ epochs = 10000
 for epoch in range(epochs):
     optimizer.zero_grad()
     predictions = model(X)
-    loss = criterion(predictions, y)
-    loss.backward()
-    optimizer.step()
+    loss = criterion(predictions, y)  # 计算损失函数的
+    loss.backward() # 反向传播：自动计算梯度
+    optimizer.step() #执行一次梯度更新
 
     if epoch % 100 == 0:
         print(f"Epoch [{epoch}/{epochs}], Loss: {loss.item():.4f}")
 
 # 预测新房价
 new_house = torch.tensor([[1, 85, 2]], dtype=torch.float32)  # 例子: 1-新房, 85平米, 2-静安
-new_house[:, 1] /= max_size  # 归一化面积
+new_house[:, 1] /= max_size  # 归一化面积 加速收敛 防止梯度爆炸
 house_type = torch.nn.functional.one_hot(new_house[:, 0].to(torch.int64) - 1, num_classes=3)
 location = torch.nn.functional.one_hot(new_house[:, 2].to(torch.int64) - 1, num_classes=3)
 new_house_features = torch.cat([house_type, new_house[:, 1:2], location], dim=1)
