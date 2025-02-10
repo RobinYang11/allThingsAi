@@ -109,7 +109,6 @@ prompt = ChatPromptTemplate.from_messages([
     MessagesPlaceholder(variable_name="agent_scratchpad")
 ])
 
-
 fuck_prompt = ChatPromptTemplate.from_messages([
     ("system", "你好"),
     ("user", "{input}"),
