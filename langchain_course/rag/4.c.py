@@ -25,6 +25,12 @@ embeddings = OllamaEmbeddings(
 db = Chroma(persist_directory=persistent_directory,embedding_function=embeddings)
 
 
+retriever = db.as_retriever(
+    search_type="similarity",
+    search_kwargs={"k": 3},
+)
+
+# llm = 
 
 
 
