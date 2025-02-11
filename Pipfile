@@ -13,6 +13,7 @@ langchain-chroma = "*"
 langchain-ollama = "*"
 torch = "*"
 langchain-deepseek = "*"
+sentence-transformers = "*"
 
 [dev-packages]
 

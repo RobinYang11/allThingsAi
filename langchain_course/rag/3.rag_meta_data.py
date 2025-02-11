@@ -32,16 +32,16 @@ if not os.path.exists(persistent_directory):
         loader = TextLoader(file_path, encoding="utf-8")
         book_docs = loader.load()
         for doc in book_docs:
-            print(doc)
-            print("================================================")
             doc.metadata = {"source": book_file}
             documents.append(doc)
 
     text_splitter = CharacterTextSplitter(
-        chunk_size=1000,
+        chunk_size=500,
         chunk_overlap=100,
-        separator="。",
+        separator="\n",  # Changed from "。" to "\n" to better control chunk sizes
         length_function=len,
+        is_separator_regex=False,
+        strip_whitespace=True  # Added to help with consistent chunk sizes
     )
     docs = text_splitter.split_documents(documents)
     db = Chroma.from_documents(docs, embeddings, persist_directory=persistent_directory)

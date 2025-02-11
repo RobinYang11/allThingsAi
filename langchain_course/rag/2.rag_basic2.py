@@ -9,6 +9,8 @@ import os
 from dotenv import load_dotenv
 from langchain_ollama import OllamaEmbeddings
 
+
+
 load_dotenv()
 
 embeddings = OllamaEmbeddings(
@@ -28,6 +30,7 @@ retriever = db.as_retriever(
 )
 
 retriever_docs = retriever.invoke(query)
+
 
 # for i, doc in enumerate(retriever_docs):
     # print("docs")
